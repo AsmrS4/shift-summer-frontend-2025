@@ -1,0 +1,12 @@
+@import '@styles/index.scss';
+
+.select-form {
+    @include flex-column();
+    @include flex-justify-center();
+    label {
+    }
+    select {
+    }
+    .sub-items-wrapper {
+    }
+}

@@ -5,7 +5,7 @@ header.header {
     max-height: 84px;
     height: 100%;
     width: 100%;
-    padding: 24px 0;
+    padding: 24px;
     @include flex-column();
     @include flex-all-center();
     background-color: $white-color;
