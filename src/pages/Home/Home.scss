@@ -2,7 +2,7 @@
 
 main.home-page {
     background-color: $light-bg-color;
-    box-sizing: border-box;
+
     width: 100%;
     height: 100%;
     padding: 48px 0;
@@ -11,17 +11,26 @@ main.home-page {
     .container {
         max-width: 960px;
         max-height: 818px;
+        min-height: 818px;
         width: 100%;
         height: 100%;
         box-sizing: border-box;
         @include flex-column();
+        overflow: hidden;
         gap: 80px;
 
         section.home-page__header {
             @include flex-column();
+            max-width: 960px;
+            max-height: 240px;
+            width: 100%;
+            height: 100%;
             align-items: start;
             gap: 40px;
             position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+            z-index: 1;
             div {
                 @include flex-column();
                 align-items: start;
@@ -73,6 +82,8 @@ main.home-page {
 
         section.home-page__body {
             .inner-wrapper {
+                @include flex-column();
+                gap: 32px;
                 .box.calculator {
                     border-radius: 16px;
                     max-width: 960px;
@@ -84,20 +95,15 @@ main.home-page {
                     padding: 32px;
                     @include flex-column();
                     gap: 24px;
-                    .calculator__title {
-                        font-size: 24px;
-                        font-weight: 700;
-                        color: $typography-color;
-                        margin: 0;
-                    }
+
                     .input-wrapper {
                         max-width: 896px;
                         max-height: 90px;
                         width: 100%;
                         height: 100%;
                         box-sizing: border-box;
-                        @include flex-row();
-                        @include flex-justify-center();
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
                         gap: 24px;
                     }
                     button {
@@ -106,7 +112,44 @@ main.home-page {
                         align-self: flex-end;
                     }
                 }
+                .home-page__body__footer {
+                    @include flex-row();
+                    @include flex-justify-center();
+                    width: 100%;
+                    gap: 32px;
+                    .box.advertise,
+                    .box.tracker {
+                        border-radius: 16px;
+                        max-width: 464px;
+                        max-height: 176px;
+                        min-height: 176px;
+                        width: 100%;
+                        height: 100%;
+                        box-sizing: border-box;
+                        background-color: $white-color;
+                        padding: 32px;
+                        @include flex-column();
+                        gap: 24px;
+                    }
+                    .box.tracker {
+                        div.wrapper {
+                            @include flex-row();
+                            @include flex-justify-center();
+                            width: 100%;
+                        }
+                    }
+                    .box.advertise {
+                        background-image: linear-gradient(90deg, #e48f56, #ffe0b5);
+                    }
+                }
             }
         }
     }
+}
+
+.box__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: $typography-color;
+    margin: 0;
 }
