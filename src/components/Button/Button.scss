@@ -1,0 +1,15 @@
+@import '@styles';
+
+.btn {
+    border-radius: $btn-radius;
+    background-color: $primary-color;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    max-height: 56px;
+    height: 100%;
+    box-sizing: border-box;
+    color: $white-color;
+    border: none;
+    cursor: pointer;
+}

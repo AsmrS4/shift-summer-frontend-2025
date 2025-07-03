@@ -1,0 +1,155 @@
+@import '@styles/index.scss';
+
+main.home-page {
+    background-color: $light-bg-color;
+
+    width: 100%;
+    height: 100%;
+    padding: 48px 0;
+    @include flex-column();
+    @include flex-all-center();
+    .container {
+        max-width: 960px;
+        max-height: 818px;
+        min-height: 818px;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        @include flex-column();
+        overflow: hidden;
+        gap: 80px;
+
+        section.home-page__header {
+            @include flex-column();
+            max-width: 960px;
+            max-height: 240px;
+            width: 100%;
+            height: 100%;
+            align-items: start;
+            gap: 40px;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+            z-index: 1;
+            div {
+                @include flex-column();
+                align-items: start;
+                gap: 16px;
+                z-index: 1;
+                .home-page__title {
+                    margin: 0;
+                    font-size: 48px;
+                    font-weight: 700;
+                    color: $typography-color;
+                }
+                .home-page__subtitle {
+                    margin: 0;
+                    font-weight: 300;
+                    size: 24px;
+                    color: $subtext-color;
+                }
+            }
+            .box {
+                border-radius: 16px;
+                max-width: 500px;
+                max-height: 96px;
+                width: 100%;
+                height: 100%;
+                box-sizing: border-box;
+                background-color: $white-color;
+                padding: 16px;
+                z-index: 1;
+                @include flex-row();
+                align-items: center;
+
+                gap: 16px;
+                span {
+                    line-height: 24px;
+                    font-size: 16px;
+                    font-weight: 400;
+                    color: $subtext-color;
+                    margin: 0;
+                    white-space: pre-wrap;
+                }
+            }
+            .home-page__image {
+                position: absolute;
+                z-index: 0;
+                right: -100px;
+                top: -40px;
+            }
+        }
+
+        section.home-page__body {
+            .inner-wrapper {
+                @include flex-column();
+                gap: 32px;
+                .box.calculator {
+                    border-radius: 16px;
+                    max-width: 960px;
+                    max-height: 290px;
+                    width: 100%;
+                    height: 100%;
+                    box-sizing: border-box;
+                    background-color: $white-color;
+                    padding: 32px;
+                    @include flex-column();
+                    gap: 24px;
+
+                    .input-wrapper {
+                        max-width: 896px;
+                        max-height: 90px;
+                        width: 100%;
+                        height: 100%;
+                        box-sizing: border-box;
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 24px;
+                    }
+                    button {
+                        max-width: 282px;
+                        width: 100%;
+                        align-self: flex-end;
+                    }
+                }
+                .home-page__body__footer {
+                    @include flex-row();
+                    @include flex-justify-center();
+                    width: 100%;
+                    gap: 32px;
+                    .box.advertise,
+                    .box.tracker {
+                        border-radius: 16px;
+                        max-width: 464px;
+                        max-height: 176px;
+                        min-height: 176px;
+                        width: 100%;
+                        height: 100%;
+                        box-sizing: border-box;
+                        background-color: $white-color;
+                        padding: 32px;
+                        @include flex-column();
+                        gap: 24px;
+                    }
+                    .box.tracker {
+                        div.wrapper {
+                            @include flex-row();
+                            @include flex-justify-center();
+                            width: 100%;
+                        }
+                    }
+                    .box.advertise {
+                        background-image: linear-gradient(90deg, #e48f56, #ffe0b5);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.box__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: $typography-color;
+    margin: 0;
+}
