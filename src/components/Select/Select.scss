@@ -2,11 +2,41 @@
 
 .select-form {
     @include flex-column();
-    @include flex-justify-center();
+    align-items: start;
+    justify-content: space-between;
+    box-sizing: border-box;
+    position: relative;
+    gap: 4px;
     label {
+        font-size: 14px;
+        font-weight: 500;
+        color: $typography-color;
     }
-    select {
+    div.wrapper {
+        width: 100%;
+        box-sizing: border-box;
+        svg {
+            height: 20px;
+            width: 20px;
+            fill: $link-color;
+            position: absolute;
+            top: 30px;
+            left: 10px;
+            z-index: 2;
+        }
+        select {
+            width: 100%;
+            max-width: 300px;
+            border-radius: $input-radius;
+            border: 1px solid $stroke-color;
+            height: 40px;
+            padding: 8px 8px 8px 12px;
+            box-sizing: border-box;
+        }
     }
     .sub-items-wrapper {
+        @include flex-row();
+        align-items: center;
+        gap: 8px;
     }
 }
