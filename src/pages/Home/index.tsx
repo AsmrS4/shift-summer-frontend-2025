@@ -12,12 +12,15 @@ import Select from '@components/Select';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { useDispatch } from 'react-redux';
 import { fetchAddress } from '@store/Address/AddressCreator';
+import { fetchPackageParams } from '@store/Packages/PackageCreator';
 
 const HomePage = () => {
     const { cities } = useAppSelector((state) => state.addressReducer);
+    const { packages } = useAppSelector((state) => state.packageReducer);
     const dispatch: any = useDispatch();
     useEffect(() => {
         dispatch(fetchAddress());
+        dispatch(fetchPackageParams());
     }, []);
     return (
         <main className='home-page'>
@@ -52,7 +55,7 @@ const HomePage = () => {
                                     icon={<TelegramIcon />}
                                 />
                                 <Select
-                                    options={[]}
+                                    options={packages}
                                     label={'Размер посылки'}
                                     icon={<MailOutlineIcon />}
                                 />
@@ -61,7 +64,7 @@ const HomePage = () => {
                         </Box>
                         <div className='home-page__body__footer'>
                             <Box className={'box tracker'}>
-                                <h2 className='box__title'>Отследить послыку</h2>
+                                <h2 className='box__title'>Отследить посылку</h2>
                                 <div className='wrapper'>
                                     <input type='text' />
                                     <ActionButton text={'Найти'} type={'button'} disabled={false} />
