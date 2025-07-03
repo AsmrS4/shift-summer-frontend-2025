@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PlaceIcon from '@mui/icons-material/Place';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
@@ -8,9 +8,17 @@ import box from '@assets/package-open.svg';
 import qr from '@assets/QR_koronapay.svg';
 import bgImage from '@assets/bg-image.svg';
 import ActionButton from '@components/Button';
-
 import Select from '@components/Select';
+import { useAppSelector } from '@hooks/useAppSelector';
+import { useDispatch } from 'react-redux';
+import { fetchAddress } from '@store/Address/AddressCreator';
+
 const HomePage = () => {
+    const { cities } = useAppSelector((state) => state.addressReducer);
+    const dispatch: any = useDispatch();
+    useEffect(() => {
+        dispatch(fetchAddress());
+    }, []);
     return (
         <main className='home-page'>
             <div className='container'>
@@ -34,12 +42,12 @@ const HomePage = () => {
                             <h2 className='box__title'>Рассчитать доставку</h2>
                             <div className='input-wrapper'>
                                 <Select
-                                    options={[]}
+                                    options={cities}
                                     label={'Город отправки'}
                                     icon={<PlaceIcon />}
                                 />
                                 <Select
-                                    options={[]}
+                                    options={cities}
                                     label={'Город назначения'}
                                     icon={<TelegramIcon />}
                                 />

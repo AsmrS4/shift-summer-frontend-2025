@@ -8,6 +8,7 @@ export default defineConfig({
     host: 'localhost',
     open: true
   },
+  
   resolve: {
     alias: [
       {find:'@assets', replacement: '/src/assets/'},
@@ -18,6 +19,7 @@ export default defineConfig({
       {find:'@hooks', replacement:'/src/hooks/'},
       {find:'@store', replacement:'/src/store/'},
       {find:'@utils', replacement:'/src/utils/'},
+      {find:'@models', replacement:'/src/models/'},
       {find:'@pages', replacement:'/src/pages/'}
     ]
   },
