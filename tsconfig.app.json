@@ -15,6 +15,7 @@
       "@styles/*": ["src/styles/*"],
       "@components/*": ["src/components/*"],
       "@hooks/*": ["src/hooks/*"],
+      "@models/*": ["src/models/*"],
       "@store/*": ["src/store/*"],
       "@utils/*": ["src/utils/*"],
       "@pages/*": ["src/pages/*"]
