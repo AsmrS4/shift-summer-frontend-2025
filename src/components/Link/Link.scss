@@ -1,0 +1,32 @@
+@import '@styles/index.scss';
+
+.link {
+    @include flex-row();
+    @include flex-justify-center();
+    box-sizing: border-box;
+    gap: 16px;
+    text-decoration: none;
+    color: $typography-color;
+    svg {
+        height: 24px;
+        width: 24px;
+        fill: $typography-color;
+    }
+    p {
+        font-size: 16px;
+        font-weight: 500;
+        font-family: 'Inter', 'Roboto', sans-serif;
+        margin: 0;
+
+        text-decoration: none;
+    }
+}
+
+.link.active {
+    svg {
+        fill: $primary-color;
+    }
+    p {
+        color: $primary-color;
+    }
+}

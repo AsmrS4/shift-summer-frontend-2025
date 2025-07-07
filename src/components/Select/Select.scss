@@ -1,0 +1,91 @@
+@import '@styles/index.scss';
+
+.select-form {
+    @include flex-column();
+    align-items: start;
+    justify-content: space-between;
+    box-sizing: border-box;
+    position: relative;
+    gap: 4px;
+    label {
+        font-size: 14px;
+        font-weight: 500;
+        color: $typography-color;
+    }
+    div.wrapper {
+        width: 100%;
+        box-sizing: border-box;
+
+        svg {
+            height: 20px;
+            width: 20px;
+            fill: $link-color;
+            position: absolute;
+            top: 30px;
+            left: 10px;
+            z-index: 2;
+        }
+    }
+    .sub-items-wrapper {
+        @include flex-row();
+        align-items: center;
+        gap: 8px;
+    }
+}
+
+select {
+    width: 100%;
+    max-width: 300px;
+    border-radius: $input-radius;
+    border: 1px solid $stroke-color;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 0 16px 0 36px;
+    align-items: center;
+    justify-content: center;
+}
+select,
+select::picker(select) {
+    appearance: base-select;
+}
+select::picker-icon {
+    color: #999;
+    transition: 0.4s rotate;
+}
+select:open::picker-icon {
+    rotate: 180deg;
+}
+select::picker(select) {
+    border: none;
+}
+
+option {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+
+    border: 2px solid #ddd;
+
+    padding: 10px;
+    transition: 0.4s;
+}
+option:first-of-type {
+    border-radius: 8px 8px 0 0;
+}
+
+option:last-of-type {
+    border-radius: 0 0 8px 8px;
+}
+
+option:not(option:last-of-type) {
+    border-bottom: none;
+}
+option:checked .icon {
+    display: none;
+}
+option::checkmark {
+    display: none;
+}
+option:checked {
+    font-weight: bold;
+}

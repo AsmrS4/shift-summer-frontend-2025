@@ -1,0 +1,29 @@
+@import '@styles';
+
+.btn {
+    border-radius: $btn-radius;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    max-height: 56px;
+    height: 100%;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    cursor: pointer;
+    &.default {
+        background-color: inherit;
+        color: $typography-color;
+        border: 1px solid $stroke-color;
+    }
+    &.primary {
+        background-color: $primary-color;
+        color: $white-color;
+    }
+}
+
+.btn:disabled {
+    background-color: #f3f4f6;
+    color: $subtext-color;
+    transition: all 0.4s ease-in-out;
+}

@@ -1,0 +1,35 @@
+@import '@styles/index.scss';
+
+header.header {
+    box-sizing: border-box;
+    max-height: 84px;
+    height: 100%;
+    width: 100%;
+    padding: 24px;
+    @include flex-column();
+    @include flex-all-center();
+    background-color: $white-color;
+    border-bottom: 1px solid $stroke-color;
+    div.wrapper {
+        max-width: 960px;
+        width: 100%;
+        height: auto;
+        @include flex-row();
+        @include flex-justify-center();
+        gap: 32px;
+
+        nav.navigation {
+            @include flex-row();
+            @include flex-justify-center();
+            width: 100%;
+            gap: 32px;
+            div.left-child {
+                @include flex-row();
+                gap: 32px;
+            }
+            div.right-child {
+                @include flex-row();
+            }
+        }
+    }
+}

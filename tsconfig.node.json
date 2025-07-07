@@ -6,6 +6,20 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@api/*": ["src/api/*"],
+      "@assets/*": ["src/assets/*"],
+      "@styles/*": ["src/styles/*"],
+      "@components/*": ["src/components/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@models/*": ["src/models/*"],
+      "@store/*": ["src/store/*"],
+      "@utils/*": ["src/utils/*"],
+      "@pages/*": ["src/pages/*"]
+    },
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
