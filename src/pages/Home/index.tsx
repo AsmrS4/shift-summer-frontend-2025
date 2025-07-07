@@ -34,10 +34,10 @@ const HomePage = () => {
     return (
         <main className='home-page'>
             <div className='container'>
-                <section className='home-page__header'>
+                <section className='home-page-header'>
                     <div>
-                        <h1 className='home-page__title'>Мы доставим ваш заказ</h1>
-                        <h2 className='home-page__subtitle'>
+                        <h1 className='home-page-title'>Мы доставим ваш заказ</h1>
+                        <h2 className='home-page-subtitle'>
                             Отправляйте посылки в приложении Шифт Delivery
                         </h2>
                     </div>
@@ -46,12 +46,12 @@ const HomePage = () => {
                         <img src={qr} alt='QR-code' />
                         <span>{'Наведите камеру телефона\nна QR-код'}</span>
                     </Box>
-                    <img className='home-page__image' src={bgImage} alt='Delivery Box ' />
+                    <img className='home-page-image' src={bgImage} alt='Delivery Box ' />
                 </section>
-                <section className='home-page__body'>
+                <section className='home-page-body'>
                     <div className='inner-wrapper'>
                         <Box className={'box calculator'}>
-                            <h2 className='box__title'>Рассчитать доставку</h2>
+                            <h2 className='box-title'>Рассчитать доставку</h2>
                             <div className='input-wrapper'>
                                 <Select options={cities} label='Город отправки' icon={<Place />} />
                                 <Select
@@ -72,9 +72,9 @@ const HomePage = () => {
                                 disabled={false}
                             />
                         </Box>
-                        <div className='home-page__body__footer'>
+                        <div className='home-page-footer'>
                             <Box className={'box tracker'}>
-                                <h2 className='box__title'>Отследить посылку</h2>
+                                <h2 className='box-title'>Отследить посылку</h2>
                                 <div className='wrapper'>
                                     <Input
                                         value={orderNumber}

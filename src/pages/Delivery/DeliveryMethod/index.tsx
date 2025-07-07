@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import clsx from 'clsx';
+import { useNavigate } from 'react-router-dom';
+
 import LinearProgressBar from '@components/ProgressBar/LinearBar';
 import ActionButton from '@components/Button';
 
@@ -8,7 +9,6 @@ import defaultDeliveryIcon from '@assets/default-delivery-img.svg';
 import giftImage from '@assets/gift-small.svg';
 
 import '../DeliveryPage.scss';
-import { useNavigate } from 'react-router-dom';
 
 const DeliveryPage = () => {
     const [deliveryType, setDeliveryType] = useState<string | null>(null);

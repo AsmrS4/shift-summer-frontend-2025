@@ -17,7 +17,7 @@ main.home-page {
         overflow: hidden;
         gap: 80px;
         margin: 0 auto;
-        section.home-page__header {
+        section.home-page-header {
             @include flex-column();
             max-width: 960px;
             max-height: 240px;
@@ -34,13 +34,13 @@ main.home-page {
                 align-items: start;
                 gap: 16px;
                 z-index: 1;
-                .home-page__title {
+                .home-page-title {
                     margin: 0;
                     font-size: 48px;
                     font-weight: 700;
                     color: $typography-color;
                 }
-                .home-page__subtitle {
+                .home-page-subtitle {
                     margin: 0;
                     font-weight: 300;
                     size: 24px;
@@ -70,7 +70,7 @@ main.home-page {
                     white-space: pre-wrap;
                 }
             }
-            .home-page__image {
+            .home-page-image {
                 position: absolute;
                 z-index: 0;
                 right: -100px;
@@ -78,7 +78,7 @@ main.home-page {
             }
         }
 
-        section.home-page__body {
+        section.home-page-body {
             .inner-wrapper {
                 @include flex-column();
                 gap: 32px;
@@ -110,7 +110,7 @@ main.home-page {
                         align-self: flex-end;
                     }
                 }
-                .home-page__body__footer {
+                .home-page-footer {
                     @include flex-row();
                     @include flex-justify-center();
                     width: 100%;
@@ -179,7 +179,7 @@ main.home-page {
     }
 }
 
-.box__title {
+.box-title {
     font-size: 24px;
     font-weight: 700;
     color: $typography-color;

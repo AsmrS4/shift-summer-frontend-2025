@@ -13,7 +13,7 @@ const Header = () => {
                 <div className='logo'>
                     <img src={logoSrc} alt='Logo' />
                 </div>
-                <nav className='header__navigation'>
+                <nav className='navigation'>
                     <div className='left-child'>
                         <NavLink href={'/profile'} text={'Профиль'} icon={<PermIdentity />} />
                         <NavLink href={'/history'} text={'История'} icon={<Schedule />} />
