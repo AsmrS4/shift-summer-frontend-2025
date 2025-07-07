@@ -1,4 +1,3 @@
-import type React from 'react';
 import { PermIdentity, Schedule, Logout, Login } from '@mui/icons-material';
 import NavLink from '@components/Link';
 import logoSrc from '@assets/SHIFT_LOGO.svg';
@@ -13,7 +12,7 @@ const Header = () => {
                 <div className='logo'>
                     <img src={logoSrc} alt='Logo' />
                 </div>
-                <nav className='header__navigation'>
+                <nav className='navigation'>
                     <div className='left-child'>
                         <NavLink href={'/profile'} text={'Профиль'} icon={<PermIdentity />} />
                         <NavLink href={'/history'} text={'История'} icon={<Schedule />} />

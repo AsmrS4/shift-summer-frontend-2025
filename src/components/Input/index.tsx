@@ -29,7 +29,7 @@ const Input = ({
     });
     return (
         <>
-            {label && <label className='input__label'>{label}</label>}
+            {label && <label className='input-label'>{label}</label>}
             <input
                 className={inputClassName}
                 type={type}
@@ -37,8 +37,8 @@ const Input = ({
                 onChange={onChange}
                 value={value}
             />
-            {hint && !error && <p className={'input__hint'}>{hintMessage}</p>}
-            {error && <p className={'input__hint error'}>{errorMessage}</p>}
+            {hint && !error && <p className={'input-hint'}>{hintMessage}</p>}
+            {error && <p className={'input-hint error'}>{errorMessage}</p>}
         </>
     );
 };
