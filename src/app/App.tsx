@@ -1,5 +1,5 @@
 import Header from '@components/Header';
-import DeliveryPage from '@pages/DeliveryPage';
+import DeliveryPage from '@pages/Delivery/DeliveryMethod';
 import HomePage from '@pages/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 

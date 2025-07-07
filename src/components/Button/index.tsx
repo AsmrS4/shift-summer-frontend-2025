@@ -7,7 +7,7 @@ interface ButtonProps {
     type: 'submit' | 'button' | 'reset';
     disabled?: boolean;
     color?: 'default' | 'primary';
-    onClick?: () => {};
+    onClick?: () => void;
 }
 const ActionButton = ({ text, type, disabled, onClick, color = 'default' }: ButtonProps) => {
     const buttonClassName = clsx('btn', {
