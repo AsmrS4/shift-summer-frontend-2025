@@ -8,7 +8,7 @@ interface SelectProps {
     sub?: ReactNode[];
 }
 
-const Select: React.FC<SelectProps> = ({ options, label, sub, icon }) => {
+const Select = ({ options, label, sub, icon }: SelectProps) => {
     return (
         <div className='select-form'>
             <label htmlFor='select'>{label}</label>

@@ -7,7 +7,7 @@ interface NavProps {
     icon?: ReactNode;
 }
 
-const NavLink: React.FC<NavProps> = ({ href, text, icon }) => {
+const NavLink = ({ href, text, icon }: NavProps) => {
     return (
         <a href={href} className='link'>
             {icon}

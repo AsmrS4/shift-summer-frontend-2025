@@ -1,23 +1,23 @@
-import type { ICity } from "@models/City"
+import type { DeliveryPoint } from "@models/DeliveryPoint"
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
 
-interface InitCityProps {
-    cities: ICity[]
+interface InitDeliveryPointsProps {
+    cities: DeliveryPoint[]
 }
 
-const initialState: InitCityProps = {
+const initialState: InitDeliveryPointsProps = {
     cities: []
 }
 
-const addressSlice = createSlice( {
-    name: 'city',
+const deliveryPointSlice = createSlice( {
+    name: 'deliveryPoints',
     initialState,
     reducers: {
-        setOptions: (state, action: PayloadAction<ICity[]>) => {
+        setOptions: (state, action: PayloadAction<DeliveryPoint[]>) => {
             state.cities = action.payload;
         }
     }
 })
 
-export default addressSlice.reducer;
-export const {setOptions} = addressSlice.actions;
+export default deliveryPointSlice.reducer;
+export const {setOptions} = deliveryPointSlice.actions;

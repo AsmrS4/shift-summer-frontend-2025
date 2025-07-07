@@ -12,7 +12,7 @@ interface InputProps {
     hintMessage?: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-const Input: React.FC<InputProps> = ({
+const Input = ({
     label,
     value,
     onChange,
@@ -22,7 +22,7 @@ const Input: React.FC<InputProps> = ({
     hint,
     errorMessage,
     hintMessage,
-}) => {
+}: InputProps) => {
     return (
         <>
             {label && <label className='input__label'>{label}</label>}

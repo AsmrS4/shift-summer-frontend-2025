@@ -1,25 +1,25 @@
 import type React from 'react';
-import AppLogo from '@components/Logotype';
-import ProfileIcon from '@mui/icons-material/PermIdentity';
-import ScheduleIcon from '@mui/icons-material/Schedule';
-import LogoutIcon from '@mui/icons-material/Logout';
-import LoginIcon from '@mui/icons-material/Login';
-import './Header.scss';
+import { PermIdentity, Schedule, Logout, Login } from '@mui/icons-material';
 import NavLink from '@components/Link';
+import logoSrc from '@assets/SHIFT_LOGO.svg';
 
-const Header: React.FC = () => {
+import './Header.scss';
+
+const Header = () => {
     //TODO:вынести проверку авторизации в стор
     return (
         <header className='header'>
             <div className='wrapper'>
-                <AppLogo />
+                <div className='logo'>
+                    <img src={logoSrc} alt='Logo' />
+                </div>
                 <nav className='header__navigation'>
                     <div className='left-child'>
-                        <NavLink href={'/profile'} text={'Профиль'} icon={<ProfileIcon />} />
-                        <NavLink href={'/history'} text={'История'} icon={<ScheduleIcon />} />
+                        <NavLink href={'/profile'} text={'Профиль'} icon={<PermIdentity />} />
+                        <NavLink href={'/history'} text={'История'} icon={<Schedule />} />
                     </div>
                     <div className='right-child'>
-                        <NavLink href={'/sign-in'} text={'Выйти'} icon={<LogoutIcon />} />
+                        <NavLink href={'/sign-in'} text={'Выйти'} icon={<Logout />} />
                     </div>
                 </nav>
             </div>

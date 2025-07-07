@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import PlaceIcon from '@mui/icons-material/Place';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import './Home.scss';
+import { useDispatch } from 'react-redux';
+import { Place, Telegram, MailOutline } from '@mui/icons-material';
 import { Box } from '@mui/material';
 
-import ActionButton from '@components/Button';
+import Input from '@components/Input';
 import Select from '@components/Select';
+import ActionButton from '@components/Button';
+
 import { useAppSelector } from '@hooks/useAppSelector';
-import { useDispatch } from 'react-redux';
+
 import { fetchAddress } from '@store/Address/AddressCreator';
 import { fetchPackageParams } from '@store/Packages/PackageCreator';
 
 import box from '@assets/package-open.svg';
 import qr from '@assets/QR_koronapay.svg';
 import bgImage from '@assets/bg-image.svg';
-import bgImageSmall from '@assets/s_empty96-s.svg';
-import Input from '@components/Input';
+import giftImageSmall from '@assets/gift-small.svg';
+
+import './Home.scss';
 
 const HomePage = () => {
     const { cities } = useAppSelector((state) => state.addressReducer);
@@ -52,20 +53,16 @@ const HomePage = () => {
                         <Box className={'box calculator'}>
                             <h2 className='box__title'>Рассчитать доставку</h2>
                             <div className='input-wrapper'>
+                                <Select options={cities} label='Город отправки' icon={<Place />} />
                                 <Select
                                     options={cities}
-                                    label={'Город отправки'}
-                                    icon={<PlaceIcon />}
-                                />
-                                <Select
-                                    options={cities}
-                                    label={'Город назначения'}
-                                    icon={<TelegramIcon />}
+                                    label='Город назначения'
+                                    icon={<Telegram />}
                                 />
                                 <Select
                                     options={packages}
-                                    label={'Размер посылки'}
-                                    icon={<MailOutlineIcon />}
+                                    label='Размер посылки'
+                                    icon={<MailOutline />}
                                 />
                             </div>
                             <ActionButton text={'Рассчитать'} type={'button'} disabled={false} />
@@ -91,7 +88,7 @@ const HomePage = () => {
                                         </h2>
                                         <p>за приведенного друга</p>
                                     </div>
-                                    <img src={bgImageSmall} alt='' />
+                                    <img src={giftImageSmall} alt='gift' />
                                 </div>
                             </Box>
                         </div>
