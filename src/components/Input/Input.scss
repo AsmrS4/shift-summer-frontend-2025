@@ -11,4 +11,7 @@
     &::placeholder {
         color: $placeholder-color;
     }
+    &.error {
+        border-color: $error-color;
+    }
 }

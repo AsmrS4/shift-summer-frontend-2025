@@ -65,7 +65,12 @@ const HomePage = () => {
                                     icon={<MailOutline />}
                                 />
                             </div>
-                            <ActionButton text={'Рассчитать'} type={'button'} disabled={false} />
+                            <ActionButton
+                                text={'Рассчитать'}
+                                type={'button'}
+                                color='primary'
+                                disabled={false}
+                            />
                         </Box>
                         <div className='home-page__body__footer'>
                             <Box className={'box tracker'}>
@@ -77,7 +82,12 @@ const HomePage = () => {
                                         type='number'
                                         placeholder='Номер заказа'
                                     />
-                                    <ActionButton text={'Найти'} type={'button'} disabled={false} />
+                                    <ActionButton
+                                        text={'Найти'}
+                                        type={'button'}
+                                        disabled={false}
+                                        color='primary'
+                                    />
                                 </div>
                             </Box>
                             <Box className={'box advertise'}>

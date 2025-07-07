@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import './Input.scss';
 
 interface InputProps {
@@ -23,11 +24,14 @@ const Input = ({
     errorMessage,
     hintMessage,
 }: InputProps) => {
+    const inputClassName = clsx('input', {
+        error: error,
+    });
     return (
         <>
             {label && <label className='input__label'>{label}</label>}
             <input
-                className='input'
+                className={inputClassName}
                 type={type}
                 placeholder={placeholder}
                 onChange={onChange}
