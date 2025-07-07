@@ -1,6 +1,7 @@
 import Header from '@components/Header';
 import DeliveryPage from '@pages/Delivery/DeliveryMethod';
 import HomePage from '@pages/Home';
+import LoginPage from '@pages/Login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
                         <Route path='/delivery-registration/success' element={<DeliveryPage />} />
                         <Route path='/delivery-registration/error' element={<DeliveryPage />} />
                     </Route>
+                    <Route path='/sign-in' element={<LoginPage />} />
                 </Routes>
             </BrowserRouter>
         </>
