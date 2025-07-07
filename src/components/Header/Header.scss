@@ -18,7 +18,7 @@ header.header {
         @include flex-justify-center();
         gap: 32px;
 
-        nav.header__navigation {
+        nav.navigation {
             @include flex-row();
             @include flex-justify-center();
             width: 100%;
@@ -28,6 +28,7 @@ header.header {
                 gap: 32px;
             }
             div.right-child {
+                @include flex-row();
             }
         }
     }

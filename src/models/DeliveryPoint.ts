@@ -1,4 +1,4 @@
-export interface ICity {
+export interface DeliveryPoint {
     id: string | number;
     name: string;
     latitude: number;

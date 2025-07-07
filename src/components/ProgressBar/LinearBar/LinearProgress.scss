@@ -1,0 +1,19 @@
+@import '@styles/index.scss';
+
+.progress-bar {
+    @include flex-column();
+    align-items: start;
+
+    gap: 8px;
+    max-width: 464px;
+    width: 100%;
+    .progress-bar__label {
+        font-size: 12px;
+        font-weight: 400;
+        color: $h-title-color;
+    }
+    .progress-bar__progress {
+        color: #40bf7f;
+        width: 100%;
+    }
+}

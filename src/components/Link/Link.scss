@@ -21,3 +21,12 @@
         text-decoration: none;
     }
 }
+
+.link.active {
+    svg {
+        fill: $primary-color;
+    }
+    p {
+        color: $primary-color;
+    }
+}
