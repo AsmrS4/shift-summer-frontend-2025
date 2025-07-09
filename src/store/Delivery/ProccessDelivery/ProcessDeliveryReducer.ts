@@ -1,44 +1,38 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { PackageCreate } from "@models/Package";
+import type { DeliveryType, PackageCreate } from "@models/Package";
 import type { Point } from "@models/DeliveryPoint";
 
 interface InitProps {
-    package: PackageCreate;
-    senderPoint: Point,
-    receiverPoint: Point
+    types: DeliveryType[],
+    
 }
 const initialState: InitProps = {
-    package: {
-        length: 0,
-        width: 0,
-        weight: 0,
-        height: 0
-    },
-    senderPoint: {
-        latitude: 0,
-        longitude: 0
-    }, 
-    receiverPoint: {
-        latitude: 0,
-        longitude: 0
-    } 
+    types: [ {
+        days: 0,
+        id: null,
+        price: 0,
+        type: 'EXPRESS' 
+    }, {
+        days: 0,
+        id: null,
+        price: 0,
+        type: 'DEFAULT' 
+    }]
 }
 
 const processDeliverySlice = createSlice({
     name:'processDelivery',
     initialState,
     reducers: {
-        setPackageDetails: (state, action: PayloadAction<PackageCreate>) => {
-            state.package = action.payload;
+        setTypes: (state, action: PayloadAction<DeliveryType[]>) => {
+            state.types= action.payload;
+            console.log(state.types)
         },
-        setSenderPoint: (state, action: PayloadAction<Point>) => {
-            state.senderPoint = action.payload;
-        },
-        setReceiverPoint: (state, action: PayloadAction<Point>) => {
-            state.receiverPoint = action.payload;
+        clearTypes: (state) => {
+            state.types = initialState.types
         }
     }
 })
 
 export default processDeliverySlice.reducer;
-export const {setPackageDetails, setSenderPoint, setReceiverPoint} = processDeliverySlice.actions;
+export const {setTypes, clearTypes} = processDeliverySlice.actions;

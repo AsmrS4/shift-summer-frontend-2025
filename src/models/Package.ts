@@ -13,3 +13,10 @@ export interface PackageCreate {
     weight: number,
     height: number
 }
+
+export interface DeliveryType {
+    days: number | string,
+    id: string | number | null,
+    price: number | string
+    type: 'EXPRESS' | 'DEFAULT'
+}
