@@ -16,7 +16,8 @@ export interface PackageCreate {
 
 export interface DeliveryType {
     days: number | string,
-    id: string | number | null,
-    price: number | string
+    id: string,
+    price: number | string,
+    name: string,
     type: 'EXPRESS' | 'DEFAULT'
 }

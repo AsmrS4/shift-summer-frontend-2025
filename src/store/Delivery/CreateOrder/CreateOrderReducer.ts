@@ -1,4 +1,4 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction, current } from "@reduxjs/toolkit";
 
 interface ReceiverAddressProps {
     street: string,
@@ -15,6 +15,11 @@ interface SenderAddressProps {
     comment?: string ,
 }
 
+interface PackageType {
+    id: string,
+    type: "DEFAULT" | "EXPRESS" 
+}
+
 interface PersonDetails {
     firstname: string,
     lastname: string,
@@ -25,7 +30,7 @@ interface PersonDetails {
 interface InitProp {
     data: {
         packageId: string | number | null;
-        optionType: "DEFAULT" | "EXPRESS";
+        optionType: "DEFAULT" | "EXPRESS" ;
         senderPointId: string | number | null;
         senderAddress: SenderAddressProps;
         sender: PersonDetails;
@@ -75,8 +80,10 @@ const createOrderSlice = createSlice({
     name: 'createOrder',
     initialState,
     reducers: {
-        setOptionType: (state, action) => {
-            state.data.optionType = action.payload;
+        setPackageDetails: (state, action:PayloadAction<PackageType>) => {
+            state.data.packageId = action.payload.id;
+            state.data.optionType = action.payload.type
+            console.log(current(state.data))
         },
         setSender : (state, action: PayloadAction<SenderAddressProps>) => {
             state.data.senderAddress = action.payload
@@ -108,7 +115,7 @@ const createOrderSlice = createSlice({
 
 export default createOrderSlice.reducer;
 export const {
-    setOptionType, setReceiver, 
+    setPackageDetails, setReceiver, 
     setPayer, setReceiverDetails, 
     setReceiverPointId, setSender, 
     setSenderDetails, setSenderPointId

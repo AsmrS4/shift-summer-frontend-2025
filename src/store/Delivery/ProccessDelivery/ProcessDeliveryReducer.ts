@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { DeliveryType, PackageCreate } from "@models/Package";
-import type { Point } from "@models/DeliveryPoint";
+import type { DeliveryType} from "@models/Package";
+
 
 interface InitProps {
     types: DeliveryType[],
@@ -9,13 +9,15 @@ interface InitProps {
 const initialState: InitProps = {
     types: [ {
         days: 0,
-        id: null,
+        id: '',
         price: 0,
+        name:'',
         type: 'EXPRESS' 
     }, {
         days: 0,
-        id: null,
+        id: '',
         price: 0,
+        name:'',
         type: 'DEFAULT' 
     }]
 }
