@@ -4,3 +4,8 @@ export interface DeliveryPoint {
     latitude: number;
     longitude: number
 }
+
+export interface Point {
+    latitude: number;
+    longitude: number
+}

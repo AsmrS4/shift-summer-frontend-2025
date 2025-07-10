@@ -2,21 +2,26 @@ import { type ReactNode } from 'react';
 import './Select.scss';
 
 interface SelectProps {
+    ref: any;
     options: any[];
     label: string;
     icon?: ReactNode;
     sub?: ReactNode[];
 }
 
-const Select = ({ options, label, sub, icon }: SelectProps) => {
+const Select = ({ options, label, sub, icon, ref }: SelectProps) => {
     return (
         <div className='select-form'>
             <label htmlFor='select'>{label}</label>
             <div className='wrapper'>
                 {icon}
-                <select name='select' id='select'>
+                <select name='select' id='select' ref={ref}>
                     {options.map((item) => {
-                        return <option value={item.value}>{item.name}</option>;
+                        return (
+                            <option id={item.id} value={item.value}>
+                                {item.name}
+                            </option>
+                        );
                     })}
                 </select>
             </div>

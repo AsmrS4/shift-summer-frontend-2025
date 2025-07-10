@@ -7,8 +7,16 @@ import './LoginPage.scss';
 
 const LoginPage = () => {
     const [timer, setTimer] = useState<number>(60);
+    const [phoneNumber, setPhoneNumber] = useState<number | null>(null);
+    const [code, setCode] = useState<number | null>(null);
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+    };
+    const handlePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPhoneNumber(e.target.valueAsNumber);
+    };
+    const handleCode = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setCode(e.target.valueAsNumber);
     };
     return (
         <main className='login-page'>
@@ -19,18 +27,14 @@ const LoginPage = () => {
                     <Input
                         placeholder='Номер телефона'
                         type='number'
-                        value={null}
-                        onChange={function (e: React.ChangeEvent<HTMLInputElement>): void {
-                            throw new Error('Function not implemented.');
-                        }}
+                        value={phoneNumber}
+                        onChange={handlePhoneNumber}
                     />
                     <Input
                         placeholder='Проверочный код'
                         type='number'
-                        value={null}
-                        onChange={function (e: React.ChangeEvent<HTMLInputElement>): void {
-                            throw new Error('Function not implemented.');
-                        }}
+                        value={code}
+                        onChange={handleCode}
                     />
                     <div className='button-wrapper'>
                         <ActionButton text={'Продолжить'} type={'submit'} color='primary' />
