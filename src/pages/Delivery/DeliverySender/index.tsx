@@ -1,13 +1,15 @@
-import ActionButton from '@components/Button';
-import LinearProgressBar from '@components/ProgressBar/LinearBar';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { setReceiverDetails } from '@store/Delivery/CreateOrder/CreateOrderReducer';
+import ActionButton from '@components/Button';
+import LinearProgressBar from '@components/ProgressBar/LinearBar';
 import { useAppSelector } from '@hooks/useAppSelector';
-import { receiverFormSchema, type Receiver } from '../personSchema.config';
+import { setSenderDetails } from '@store/Delivery/CreateOrder/CreateOrderReducer';
+
+import { receiverFormSchema, type Receiver } from '../schema.config';
+import { decrementStep, incrementStep } from '@store/ProgressBar/ProgressBarReducer';
 
 const DeliverySenderPage = () => {
     const { sender } = useAppSelector((state) => state.createOrderReducer.data);
@@ -21,11 +23,13 @@ const DeliverySenderPage = () => {
     });
     const navigate = useNavigate();
     const handleNavigate = () => {
+        dispatch(decrementStep());
         navigate(-1);
     };
     const onSubmit = (form: Receiver) => {
         console.log(form);
-        dispatch(setReceiverDetails(form));
+        dispatch(setSenderDetails(form));
+        dispatch(incrementStep());
         navigate('/delivery-registration/send-from');
     };
 

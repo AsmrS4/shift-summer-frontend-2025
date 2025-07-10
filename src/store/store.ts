@@ -3,12 +3,14 @@ import deliveryPointSlice from '@store/Address/AddressReducer'
 import packageSlice  from "@store/Packages/PackagesReducer";
 import processDeliverySlice from '@store/Delivery/ProccessDelivery/ProcessDeliveryReducer';
 import createOrderSlice from '@store/Delivery/CreateOrder/CreateOrderReducer'
+import progressSlice from '@store/ProgressBar/ProgressBarReducer'
 
 const rootReducer = combineReducers({
     addressReducer: deliveryPointSlice,
     packageReducer: packageSlice,
     createOrderReducer: createOrderSlice,
-    processDeliveryReducer: processDeliverySlice
+    processDeliveryReducer: processDeliverySlice,
+    progressReducer: progressSlice
 }) 
 
 export const setupStore =() => {

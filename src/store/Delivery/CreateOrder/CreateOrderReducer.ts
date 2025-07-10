@@ -11,7 +11,7 @@ interface ReceiverAddressProps {
 interface SenderAddressProps {
     street: string,
     house: string,
-    apartment: string,
+    apartment?: string,
     comment?: string ,
 }
 
