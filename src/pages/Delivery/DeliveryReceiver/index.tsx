@@ -4,40 +4,13 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import * as z from 'zod';
 import { setReceiverDetails } from '@store/Delivery/CreateOrder/CreateOrderReducer';
 import { useAppSelector } from '@hooks/useAppSelector';
-
-const receiverFormSchema = z.object({
-    firstname: z
-        .string()
-        .trim()
-        .min(1, { message: 'Минимальная длина 1 символ' })
-        .max(60, { message: 'Максимальная длина 60 символов' })
-        .nonempty({ message: 'Поле обязательно для заполнения' }),
-    middlename: z
-        .string()
-        .trim()
-        .min(0)
-        .max(60, { message: 'Максимальная длина 60 символов' })
-        .optional(),
-    lastname: z
-        .string()
-        .trim()
-        .min(1, { message: 'Минимальная длина 1 символ' })
-        .max(60, { message: 'Максимальная длина 60 символов' })
-        .nonempty({ message: 'Поле обязательно для заполнения' }),
-    phone: z.string().refine((val) => /^\d+$/.test(val), {
-        message: 'Допустимы только цифры',
-    }),
-});
-
-type Receiver = z.infer<typeof receiverFormSchema>;
+import { receiverFormSchema, type Receiver } from '../personSchema.config';
 
 const DeliveryReceiverPage = () => {
     const { receiver } = useAppSelector((state) => state.createOrderReducer.data);
     const dispatch: any = useDispatch();
-
     const {
         register,
         handleSubmit,
@@ -46,11 +19,9 @@ const DeliveryReceiverPage = () => {
         resolver: zodResolver(receiverFormSchema),
     });
     const navigate = useNavigate();
-
     const handleNavigate = () => {
         navigate(-1);
     };
-
     const onSubmit = (form: Receiver) => {
         console.log(form);
         dispatch(setReceiverDetails(form));
