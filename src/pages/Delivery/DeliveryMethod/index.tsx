@@ -16,6 +16,7 @@ import {
     setPackageDetails,
 } from '@store/Delivery/CreateOrder/CreateOrderReducer';
 import type { DeliveryType } from '@models/Package';
+import { incrementStep, resetStep } from '@store/ProgressBar/ProgressBarReducer';
 
 const DeliveryPage = () => {
     const [deliveryType, setDeliveryType] = useState<string | null>(null);
@@ -36,6 +37,7 @@ const DeliveryPage = () => {
     };
     const handleNavigate = () => {
         dispatch(cancelCreateOrder());
+        dispatch(resetStep());
         navigate(-1);
     };
     const cardIconMapper = (type: string) => {
@@ -51,7 +53,6 @@ const DeliveryPage = () => {
         document.querySelectorAll('.delivery-card').forEach((el) => {
             el.classList.remove('selected');
         });
-
         if (deliveryType !== null) {
             document.querySelectorAll('.delivery-card').forEach((el) => {
                 if (el.getAttribute('id') === deliveryType) {
@@ -117,6 +118,7 @@ const DeliveryPage = () => {
                             color='primary'
                             disabled={isDisabled}
                             onClick={() => {
+                                dispatch(incrementStep());
                                 navigate('/delivery-registration/receiver');
                             }}
                         />

@@ -1,5 +1,6 @@
 import ActionButton from '@components/Button';
 import LinearProgressBar from '@components/ProgressBar/LinearBar';
+import { decrementStep } from '@store/ProgressBar/ProgressBarReducer';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +9,7 @@ const DeliveryCreateDetailsPage = () => {
     const dispatch: any = useDispatch();
     const navigate = useNavigate();
     const handleNavigate = () => {
+        dispatch(decrementStep());
         navigate(-1);
     };
     return (
