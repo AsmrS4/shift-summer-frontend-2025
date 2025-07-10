@@ -9,30 +9,53 @@ import defaultDeliveryIcon from '@assets/default-delivery-img.svg';
 import giftImage from '@assets/gift-small.svg';
 
 import '../DeliveryPage.scss';
+import { useAppSelector } from '@hooks/useAppSelector';
+import { useDispatch } from 'react-redux';
+import {
+    cancelCreateOrder,
+    setPackageDetails,
+} from '@store/Delivery/CreateOrder/CreateOrderReducer';
+import type { DeliveryType } from '@models/Package';
+import { incrementStep, resetStep } from '@store/ProgressBar/ProgressBarReducer';
 
 const DeliveryPage = () => {
     const [deliveryType, setDeliveryType] = useState<string | null>(null);
     const [isDisabled, setIsDisabled] = useState<boolean>(true);
+    const { types } = useAppSelector((state) => state.processDeliveryReducer);
+    const dispatch: any = useDispatch();
     const navigate = useNavigate();
-    const handleDeliveryType = (e: React.MouseEvent<HTMLLIElement>) => {
-        const el = e.currentTarget as HTMLElement;
-        const value = el.dataset.value ?? null;
-        setDeliveryType(value);
-
-        console.log(value);
+    const handleDeliveryType = (event: React.MouseEvent<HTMLLIElement>) => {
+        const id = event.currentTarget.id;
+        const type: DeliveryType | undefined = types.find((item) => item.id == id);
+        setDeliveryType(id);
+        dispatch(
+            setPackageDetails({
+                id: id,
+                type: type!.type,
+            }),
+        );
     };
     const handleNavigate = () => {
+        dispatch(cancelCreateOrder());
+        dispatch(resetStep());
         navigate(-1);
+    };
+    const cardIconMapper = (type: string) => {
+        switch (type) {
+            case 'EXPRESS':
+                return expressDeliveryIcon;
+            default:
+                return defaultDeliveryIcon;
+        }
     };
 
     useEffect(() => {
         document.querySelectorAll('.delivery-card').forEach((el) => {
             el.classList.remove('selected');
         });
-
         if (deliveryType !== null) {
             document.querySelectorAll('.delivery-card').forEach((el) => {
-                if (el.getAttribute('data-value') === deliveryType) {
+                if (el.getAttribute('id') === deliveryType) {
                     el.classList.add('selected');
                 }
             });
@@ -47,42 +70,31 @@ const DeliveryPage = () => {
                     <h2>Способ отправки</h2>
                     <LinearProgressBar />
                     <ul className='delivery-types'>
-                        <li
-                            className='delivery-card'
-                            data-value={'EXPRESS'}
-                            onClick={handleDeliveryType}
-                        >
-                            <div className='inner-wrapper'>
-                                <div className='delivery-card-header'>
-                                    <img src={expressDeliveryIcon} alt='plane' />
-                                    <div className='text'>
-                                        <p>Экспресс доставка до двери</p>
-                                        <h3>780 ₽</h3>
+                        {types.map((item) => {
+                            return (
+                                <li
+                                    key={item.id}
+                                    className='delivery-card'
+                                    data-value={item.type}
+                                    onClick={handleDeliveryType}
+                                    id={item.id}
+                                >
+                                    <div className='inner-wrapper'>
+                                        <div className='delivery-card-header'>
+                                            <img src={cardIconMapper(item.type)} alt='plane' />
+                                            <div className='text'>
+                                                <p>{item.name}</p>
+                                                <h3>{item.price} ₽</h3>
+                                            </div>
+                                        </div>
+                                        <div className='delivery-card-footer'>
+                                            <p>{item.days} рабочий день</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className='delivery-card-footer'>
-                                    <p>1 рабочий день</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li
-                            className='delivery-card'
-                            data-value={'DEFAULT'}
-                            onClick={handleDeliveryType}
-                        >
-                            <div className='inner-wrapper'>
-                                <div className='delivery-card-header'>
-                                    <img src={defaultDeliveryIcon} alt='train' />
-                                    <div className='text'>
-                                        <p>Обычная доставка</p>
-                                        <h3>325 ₽</h3>
-                                    </div>
-                                </div>
-                                <div className='delivery-card-footer'>
-                                    <p>5 рабочих дней</p>
-                                </div>
-                            </div>
-                        </li>
+                                </li>
+                            );
+                        })}
+
                         <li className='delivery-card advertise'>
                             <div className='inner-wrapper'>
                                 <div className='text'>
@@ -105,6 +117,10 @@ const DeliveryPage = () => {
                             type={'submit'}
                             color='primary'
                             disabled={isDisabled}
+                            onClick={() => {
+                                dispatch(incrementStep());
+                                navigate('/delivery-registration/receiver');
+                            }}
                         />
                     </div>
                 </div>
