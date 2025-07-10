@@ -1,5 +1,7 @@
 import { LinearProgress, linearProgressClasses, styled } from '@mui/material';
 import './LinearProgress.scss';
+import { useAppSelector } from '@hooks/useAppSelector';
+import { useEffect, useState } from 'react';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 4,
@@ -20,16 +22,22 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 const LinearProgressBar = () => {
-    //TODO:вынести счетчик прогресса в store
+    const { step, threshold } = useAppSelector((state) => state.progressReducer);
+    const [value, setValue] = useState(0);
+    useEffect(() => {
+        setValue(step);
+    }, [step]);
     return (
         <div className='progress-bar'>
             <label className='progress-bar__label'>
-                <p>Шаг {1} из 7</p>
+                <p>
+                    Шаг {value} из {threshold}
+                </p>
             </label>
             <BorderLinearProgress
                 className='progress-bar__progress'
                 variant='determinate'
-                value={14}
+                value={14 * step + 1}
             />
         </div>
     );

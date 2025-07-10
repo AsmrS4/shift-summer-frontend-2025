@@ -1,7 +1,7 @@
-import type { IPackage } from "@models/Package";
+import type { PackageProps } from "@models/Package";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 interface InitPackage {
-    packages: IPackage[]
+    packages: PackageProps[]
 }
 const initialState: InitPackage= {
     packages: []
@@ -11,7 +11,7 @@ export const packageSlice = createSlice({
     name: 'package',
     initialState,
     reducers: {
-        setPackages: (state, action: PayloadAction<IPackage[]>)  => {
+        setPackages: (state, action: PayloadAction<PackageProps[]>)  => {
             state.packages = action.payload
         }
     }
