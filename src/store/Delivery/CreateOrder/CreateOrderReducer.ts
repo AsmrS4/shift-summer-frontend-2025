@@ -107,7 +107,7 @@ const createOrderSlice = createSlice({
             state.data.payer = action.payload
         },
         cancelCreateOrder: (state) => {
-            state = initialState
+            state.data = initialState.data
         }
 
     }
@@ -118,5 +118,6 @@ export const {
     setPackageDetails, setReceiver, 
     setPayer, setReceiverDetails, 
     setReceiverPointId, setSender, 
-    setSenderDetails, setSenderPointId
+    setSenderDetails, setSenderPointId,
+    cancelCreateOrder
 } = createOrderSlice.actions;

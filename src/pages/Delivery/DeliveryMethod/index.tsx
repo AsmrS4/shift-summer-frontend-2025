@@ -11,7 +11,10 @@ import giftImage from '@assets/gift-small.svg';
 import '../DeliveryPage.scss';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { useDispatch } from 'react-redux';
-import { setPackageDetails } from '@store/Delivery/CreateOrder/CreateOrderReducer';
+import {
+    cancelCreateOrder,
+    setPackageDetails,
+} from '@store/Delivery/CreateOrder/CreateOrderReducer';
 import type { DeliveryType } from '@models/Package';
 
 const DeliveryPage = () => {
@@ -32,6 +35,7 @@ const DeliveryPage = () => {
         );
     };
     const handleNavigate = () => {
+        dispatch(cancelCreateOrder());
         navigate(-1);
     };
     const cardIconMapper = (type: string) => {
@@ -112,6 +116,9 @@ const DeliveryPage = () => {
                             type={'submit'}
                             color='primary'
                             disabled={isDisabled}
+                            onClick={() => {
+                                navigate('/delivery-registration/receiver');
+                            }}
                         />
                     </div>
                 </div>
