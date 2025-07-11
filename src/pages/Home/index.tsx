@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Place, Telegram, MailOutline } from '@mui/icons-material';
 import { Box } from '@mui/material';
@@ -18,18 +18,72 @@ import bgImage from '@assets/bg-image.svg';
 import giftImageSmall from '@assets/gift-small.svg';
 
 import './Home.scss';
+import type { DeliveryPoint, Point } from '@models/DeliveryPoint';
+import type { PackageCreate, PackageProps } from '@models/Package';
+import instance from '@api/index';
+import { setTypes } from '@store/Delivery/ProccessDelivery/ProcessDeliveryReducer';
+import { useNavigate } from 'react-router-dom';
+import {
+    setPackageId,
+    setReceiverPointId,
+    setSenderPointId,
+} from '@store/Delivery/CreateOrder/CreateOrderReducer';
 
 const HomePage = () => {
     const { cities } = useAppSelector((state) => state.addressReducer);
     const { packages } = useAppSelector((state) => state.packageReducer);
+    const packageRef = useRef<HTMLDivElement>(null);
+    const senderRef = useRef<HTMLDivElement>(null);
+    const receiverRef = useRef<HTMLDivElement>(null);
     const [orderNumber, setOrderNumber] = useState<number | null>(null);
     const dispatch: any = useDispatch();
+    const navigate: any = useNavigate();
     useEffect(() => {
         dispatch(fetchAddress());
         dispatch(fetchPackageParams());
     }, []);
+
     const handleOrderSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setOrderNumber(e.target.valueAsNumber);
+    };
+    const findItemByName = (array: any[], name: string) => {
+        return array.find((item) => item.name == name);
+    };
+
+    const mapPoint = (point: DeliveryPoint): Point => {
+        return {
+            longitude: point.longitude,
+            latitude: point.latitude,
+        };
+    };
+    const handleSubmit = () => {
+        const senderPoint: DeliveryPoint = findItemByName(cities, senderRef.current.value);
+        const receiverPoint: DeliveryPoint = findItemByName(cities, receiverRef.current.value);
+        const packageData: PackageProps = findItemByName(packages, packageRef.current.value);
+
+        processDelivery(packageData, senderPoint, receiverPoint);
+    };
+    const processDelivery = async (
+        packageProps: PackageProps,
+        senderPoint: DeliveryPoint,
+        receiverPoint: DeliveryPoint,
+    ) => {
+        try {
+            const response = await instance.post('/calc', {
+                package: { ...packageProps },
+                senderPoint: { ...senderPoint },
+                receiverPoint: { ...receiverPoint },
+            });
+
+            dispatch(setPackageId(packageProps.id));
+            dispatch(setSenderPointId(senderPoint.id));
+            dispatch(setReceiverPointId(receiverPoint.id));
+            dispatch(setTypes(response.data.options));
+
+            navigate('/delivery-registration/method');
+        } catch (error) {
+            console.log('error: ' + error);
+        }
     };
     return (
         <main className='home-page'>
@@ -53,16 +107,23 @@ const HomePage = () => {
                         <Box className={'box calculator'}>
                             <h2 className='box-title'>Рассчитать доставку</h2>
                             <div className='input-wrapper'>
-                                <Select options={cities} label='Город отправки' icon={<Place />} />
+                                <Select
+                                    options={cities}
+                                    label='Город отправки'
+                                    icon={<Place />}
+                                    ref={senderRef}
+                                />
                                 <Select
                                     options={cities}
                                     label='Город назначения'
                                     icon={<Telegram />}
+                                    ref={receiverRef}
                                 />
                                 <Select
                                     options={packages}
                                     label='Размер посылки'
                                     icon={<MailOutline />}
+                                    ref={packageRef}
                                 />
                             </div>
                             <ActionButton
@@ -70,6 +131,7 @@ const HomePage = () => {
                                 type={'button'}
                                 color='primary'
                                 disabled={false}
+                                onClick={handleSubmit}
                             />
                         </Box>
                         <div className='home-page-footer'>

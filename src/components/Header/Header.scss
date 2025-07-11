@@ -17,7 +17,9 @@ header.header {
         @include flex-row();
         @include flex-justify-center();
         gap: 32px;
-
+        .logo {
+            cursor: pointer;
+        }
         nav.navigation {
             @include flex-row();
             @include flex-justify-center();

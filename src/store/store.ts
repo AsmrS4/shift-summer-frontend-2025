@@ -1,10 +1,18 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import deliveryPointSlice from '@store/Address/AddressReducer'
 import packageSlice  from "@store/Packages/PackagesReducer";
+import processDeliverySlice from '@store/Delivery/ProccessDelivery/ProcessDeliveryReducer';
+import createOrderSlice from '@store/Delivery/CreateOrder/CreateOrderReducer'
+import progressSlice from '@store/ProgressBar/ProgressBarReducer'
+import successSlice from '@store/Delivery/SuccessCreatedOrder/SuccessOrderReducer'
 
 const rootReducer = combineReducers({
     addressReducer: deliveryPointSlice,
-    packageReducer: packageSlice
+    packageReducer: packageSlice,
+    createOrderReducer: createOrderSlice,
+    processDeliveryReducer: processDeliverySlice,
+    progressReducer: progressSlice,
+    successReducer: successSlice
 }) 
 
 export const setupStore =() => {
