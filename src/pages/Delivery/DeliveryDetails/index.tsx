@@ -10,6 +10,7 @@ import type { DeliveryType } from '@models/Package';
 import { getFullAddress, getFullName } from '@utils/index';
 import instance from '@api/index';
 import { setDetails } from '@store/Delivery/SuccessCreatedOrder/SuccessOrderReducer';
+import { cancelCreateOrder } from '@store/Delivery/CreateOrder/CreateOrderReducer';
 
 const DeliveryCreateDetailsPage = () => {
     const dispatch: any = useDispatch();
@@ -45,8 +46,10 @@ const DeliveryCreateDetailsPage = () => {
                     }),
                 );
             }
+            dispatch(cancelCreateOrder);
             navigate('/delivery-registration/success');
         } catch (error) {
+            dispatch(cancelCreateOrder);
             navigate('/delivery-registration/error');
         }
     };
@@ -174,7 +177,7 @@ const DeliveryCreateDetailsPage = () => {
                         <div className='buttons-wrapper'>
                             <ActionButton
                                 text={'Назад'}
-                                type={'submit'}
+                                type={'button'}
                                 color='default'
                                 onClick={handleNavigate}
                             />

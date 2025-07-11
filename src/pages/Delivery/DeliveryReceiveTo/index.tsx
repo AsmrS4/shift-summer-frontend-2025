@@ -86,13 +86,7 @@ const DeliveryReceiveToPage = () => {
                             />
                             {errors.comment && <p className='error'>{errors.comment.message}</p>}
                         </div>
-                        <div className='checkbox-wrapper'>
-                            <Checkbox />
-                            <label htmlFor=''>
-                                <b>Оставить заказ у двери</b>
-                            </label>
-                            <img src={helpIcon} alt='Help' />
-                        </div>
+
                         <div className='buttons-wrapper'>
                             <ActionButton
                                 text={'Назад'}

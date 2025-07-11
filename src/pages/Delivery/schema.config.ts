@@ -24,7 +24,8 @@ export const addressFormSchema = z.object({
         .string()
         .trim()
         .min(0)
-        .max(100, { message: 'Максимальная длина 100 символов' }),
+        .max(100, { message: 'Максимальная длина 100 символов' })
+        .nonempty({ message: 'Поле является обязательным' }),
     comment: z
         .string()
         .trim()
