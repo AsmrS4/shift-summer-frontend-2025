@@ -1,11 +1,5 @@
+import { validate } from '@utils/index';
 import * as z from 'zod';
-
-const validate = (val: string) => {
-  const hasLatin = /[A-Za-z]/.test(val);
-  const hasCyrillic = /[А-Яа-яЁё]/.test(val);
-
-  return !(hasLatin && hasCyrillic);
-};
 
 export const addressFormSchema = z.object({
     street: z
