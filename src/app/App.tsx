@@ -6,6 +6,7 @@ import DeliveryReceiverPage from '@pages/Delivery/DeliveryReceiver';
 import DeliveryReceiveToPage from '@pages/Delivery/DeliveryReceiveTo';
 import DeliverySenderPage from '@pages/Delivery/DeliverySender';
 import DeliverySendFromPage from '@pages/Delivery/DeliverySendFrom';
+import { ErrorPage, ServerErrorPage } from '@pages/ErrorPage';
 import HomePage from '@pages/Home';
 import LoginPage from '@pages/Login';
 import ProfilePage from '@pages/Profile';
@@ -57,6 +58,8 @@ function App() {
                         />
                     </Route>
                     <Route path='/sign-in' element={<LoginPage />} />
+                    <Route path='/server-error' element={<ServerErrorPage />} />
+                    <Route path='*' element={<ErrorPage />} />
                 </Routes>
             </BrowserRouter>
         </>

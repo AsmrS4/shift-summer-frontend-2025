@@ -6,11 +6,9 @@ import './ProfilePage.scss';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { useEffect, useState } from 'react';
 
-import { fetchProfile } from '@store/Session/User/UserCreator';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { setUser } from '@store/Session/User/UserReducer';
+import axios, { AxiosError } from 'axios';
 import type { UserProps } from '@models/Session';
+import { useNavigate } from 'react-router-dom';
 
 const ProfilePage = () => {
     const {
@@ -21,7 +19,7 @@ const ProfilePage = () => {
     } = useForm<ProfileSchema>({
         resolver: zodResolver(profileSchema),
     });
-
+    const navigate = useNavigate();
     const { token } = useAppSelector((state) => state.sessionReducer);
     const [user, setUser] = useState<UserProps>({
         phone: '',
@@ -65,7 +63,13 @@ const ProfilePage = () => {
                     },
                 },
             );
-        } catch (error) {}
+        } catch (error) {
+            if (error instanceof AxiosError && error.response) {
+                if (error.response.status == 500) {
+                    navigate('/server-error');
+                }
+            }
+        }
     };
     useEffect(() => {
         fetchUser();
