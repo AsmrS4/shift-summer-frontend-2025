@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
 import DoneIcon from '@mui/icons-material/Done';
 import './StatusPage.scss';
 import ActionButton from '@components/Button';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '@hooks/useAppSelector';
 
 export const SuccessCreatedOrderPage = () => {
     const navigate = useNavigate();
+    const { id, status, address, type } = useAppSelector((state) => state.successReducer);
+
     return (
         <main className='status-page'>
             <div className='container'>
@@ -24,20 +27,22 @@ export const SuccessCreatedOrderPage = () => {
                     </p>
                     <div className='order-card'>
                         <div className='item'>
-                            <label></label>
-                            <p></p>
+                            <label>Номер заказа</label>
+                            <p>{id}</p>
                         </div>
                         <div className='item'>
-                            <label></label>
-                            <p></p>
+                            <label>Статус</label>
+                            <p>
+                                <div className='status-indicator'></div>Создан
+                            </p>
                         </div>
                         <div className='item'>
-                            <label></label>
-                            <p></p>
+                            <label>Адрес доставки</label>
+                            <p>{address}</p>
                         </div>
                         <div className='item'>
-                            <label></label>
-                            <p></p>
+                            <label>Тип доставки</label>
+                            <p>{type}</p>
                         </div>
                         <div className='item'>
                             <p>Вся информация была продублирована в SMS</p>

@@ -1,13 +1,15 @@
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import EditIcon from '@mui/icons-material/Edit';
+
 import ActionButton from '@components/Button';
 import LinearProgressBar from '@components/ProgressBar/LinearBar';
 import { decrementStep } from '@store/ProgressBar/ProgressBarReducer';
-import EditIcon from '@mui/icons-material/Edit';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '@hooks/useAppSelector';
-import type { DeliveryType, PackageProps } from '@models/Package';
-import { useState } from 'react';
+import type { DeliveryType } from '@models/Package';
 import { getFullAddress, getFullName } from '@utils/index';
+import instance from '@api/index';
+import { setDetails } from '@store/Delivery/SuccessCreatedOrder/SuccessOrderReducer';
 
 const DeliveryCreateDetailsPage = () => {
     const dispatch: any = useDispatch();
@@ -23,9 +25,31 @@ const DeliveryCreateDetailsPage = () => {
     };
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(data);
+        createOrder();
     };
     const processDetails: DeliveryType | undefined = mapProcessDeliveryByType();
+    const createOrder = async () => {
+        try {
+            const response = await instance.post('/order', { ...data });
+            if (response.status === 201) {
+                dispatch(
+                    setDetails({
+                        id: response.data.order._id,
+                        status: response.data.order.status,
+                        address: getFullAddress(
+                            data.senderAddress.street,
+                            data.senderAddress.house,
+                            data.senderAddress.apartment,
+                        ),
+                        type: processDetails?.name ?? '',
+                    }),
+                );
+            }
+            navigate('/delivery-registration/success');
+        } catch (error) {
+            navigate('/delivery-registration/error');
+        }
+    };
     return (
         <main className='delivery-page'>
             <div className='container'>

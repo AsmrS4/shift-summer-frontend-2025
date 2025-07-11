@@ -65,16 +65,34 @@ main.status-page {
                         margin: 0;
                     }
                     p {
+                        @include flex-row();
+                        @include flex-justify-center();
+                        gap: 12px;
                         color: $typography-color;
                         font-size: 16px;
                         margin: 0;
+                        .status-indicator {
+                            height: 8px;
+                            width: 8px;
+                            border-radius: 50%;
+                            background-color: #ffb219;
+                        }
+                    }
+                }
+                &:last-child {
+                    p {
+                        color: $subtext-color;
+                        font-size: 14px;
                     }
                 }
             }
-            &:last-child {
-                p {
-                    color: $subtext-color;
-                    font-size: 14px;
+            .buttons-wrapper {
+                @include flex-row();
+                @include flex-justify-center();
+                box-sizing: border-box;
+                width: 100%;
+                button {
+                    width: 48%;
                 }
             }
         }
