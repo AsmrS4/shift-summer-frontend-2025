@@ -8,6 +8,10 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { authorizeUser } from '@store/Session/SessionCreator';
+import { useAppSelector } from '@hooks/useAppSelector';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
     const {
@@ -22,6 +26,10 @@ const LoginPage = () => {
     const [hidden, setIsHidden] = useState<boolean>(true);
     const [buttonText, setText] = useState<string>('Продолжить');
     const [retryDelay, setDelay] = useState<number>(0);
+    const { error } = useAppSelector((state) => state.sessionReducer);
+
+    const dispatch: any = useDispatch();
+    const navigate = useNavigate();
 
     const sendPhoneNumber = async (phone: string) => {
         try {
@@ -44,8 +52,12 @@ const LoginPage = () => {
         setText('Отправить');
     };
     const onSubmit = (form: Login) => {
-        console.log('here');
-        console.log(form);
+        try {
+            dispatch(authorizeUser(form));
+            navigate('/');
+        } catch (error) {
+            console.log(error);
+        }
         return;
     };
     useEffect(() => {
@@ -94,6 +106,7 @@ const LoginPage = () => {
                         {!hidden && (
                             <ActionButton text={buttonText} type={'submit'} color='primary' />
                         )}
+                        {error && <h4 className='error-message'>{error}</h4>}
                         {retryDelay > 0 && (
                             <p>Запросить код повторно можно через {retryDelay} секунд</p>
                         )}

@@ -5,6 +5,7 @@ import processDeliverySlice from '@store/Delivery/ProccessDelivery/ProcessDelive
 import createOrderSlice from '@store/Delivery/CreateOrder/CreateOrderReducer'
 import progressSlice from '@store/ProgressBar/ProgressBarReducer'
 import successSlice from '@store/Delivery/SuccessCreatedOrder/SuccessOrderReducer'
+import sessionSlice from '@store/Session/SessionReducer';
 
 const rootReducer = combineReducers({
     addressReducer: deliveryPointSlice,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     createOrderReducer: createOrderSlice,
     processDeliveryReducer: processDeliverySlice,
     progressReducer: progressSlice,
-    successReducer: successSlice
+    successReducer: successSlice,
+    sessionReducer: sessionSlice
 }) 
 
 export const setupStore =() => {

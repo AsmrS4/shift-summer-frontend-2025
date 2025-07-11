@@ -51,3 +51,8 @@ main.login-page {
         }
     }
 }
+
+.error-message {
+    font-weight: 400;
+    color: $error-color;
+}
