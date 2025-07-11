@@ -1,7 +1,9 @@
 import type { UserProps } from "@models/Session";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { act } from "react";
 
 const initialState: UserProps = {
+    _id: '',
     phone: '',
     firstname: '',
     lastname: '',
@@ -11,18 +13,17 @@ const initialState: UserProps = {
 }
 
 const userSlice = createSlice({
-    name:'session',
+    name: 'user',
     initialState,
     reducers: {
         setUser: (state, action: PayloadAction<UserProps>) => {
-            state = action.payload;
-            return action.payload
+            state = action.payload
         },
         clearUser: (state) => {
-            return initialState
+            state = initialState;
         },
     }
-})
+});
 
 export default userSlice.reducer;
 export const {setUser, clearUser} = userSlice.actions;

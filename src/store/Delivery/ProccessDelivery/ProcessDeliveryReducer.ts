@@ -28,7 +28,6 @@ const processDeliverySlice = createSlice({
     reducers: {
         setTypes: (state, action: PayloadAction<DeliveryType[]>) => {
             state.types= action.payload;
-            console.log(state.types)
         },
         clearTypes: (state) => {
             state.types = initialState.types

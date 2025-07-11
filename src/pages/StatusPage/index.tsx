@@ -91,10 +91,10 @@ export const ErrorCreatedOrderPage = () => {
 
                     <div className='buttons-wrapper'>
                         <ActionButton
-                            text={'Посмотреть статус'}
+                            text={'Вернуться к заявке'}
                             type={'button'}
                             onClick={() => {
-                                navigate('/');
+                                navigate(-1);
                             }}
                         />
                         <ActionButton
