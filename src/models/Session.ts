@@ -10,6 +10,7 @@ export interface LoginProps {
 }
 
 export interface UserProps {
+    _id?: string,
     phone: string,
     firstname:string,
     lastname: string,
