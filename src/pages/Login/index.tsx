@@ -1,17 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
-
-import Input from '@components/Input';
-import ActionButton from '@components/Button';
-import { loginSchema, type Login } from './schema.config';
-import './LoginPage.scss';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
+
+import ActionButton from '@components/Button';
 import { authorizeUser } from '@store/Session/SessionCreator';
 import { useAppSelector } from '@hooks/useAppSelector';
-import { useNavigate } from 'react-router-dom';
+
+import { loginSchema, type Login } from './schema.config';
+import './LoginPage.scss';
 
 const LoginPage = () => {
     const {

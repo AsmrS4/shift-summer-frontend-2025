@@ -7,9 +7,8 @@ import ActionButton from '@components/Button';
 import LinearProgressBar from '@components/ProgressBar/LinearBar';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { setReceiverDetails } from '@store/Delivery/CreateOrder/CreateOrderReducer';
-
-import { receiverFormSchema, type Receiver } from '../schema.config';
 import { decrementStep, incrementStep } from '@store/ProgressBar/ProgressBarReducer';
+import { receiverFormSchema, type Receiver } from '../schema.config';
 
 const DeliveryReceiverPage = () => {
     const { receiver } = useAppSelector((state) => state.createOrderReducer.data);

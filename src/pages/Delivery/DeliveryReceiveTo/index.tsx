@@ -6,11 +6,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import ActionButton from '@components/Button';
 import LinearProgressBar from '@components/ProgressBar/LinearBar';
 import { setReceiver } from '@store/Delivery/CreateOrder/CreateOrderReducer';
-import { useAppSelector } from '@hooks/useAppSelector';
-import helpIcon from '@assets/help.svg';
-import { addressFormSchema, type Address } from '../schema.config';
-import { Checkbox } from '@mui/material';
 import { decrementStep, incrementStep } from '@store/ProgressBar/ProgressBarReducer';
+import { useAppSelector } from '@hooks/useAppSelector';
+
+import { addressFormSchema, type Address } from '../schema.config';
 
 const DeliveryReceiveToPage = () => {
     const { receiverAddress } = useAppSelector((state) => state.createOrderReducer.data);

@@ -1,4 +1,4 @@
-import type { SessionProps, UserProps } from "@models/Session";
+import type { UserProps } from "@models/Session";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: UserProps = {
