@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ClearIcon from '@mui/icons-material/Clear';
 import DoneIcon from '@mui/icons-material/Done';
-import './StatusPage.scss';
+
 import ActionButton from '@components/Button';
-import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '@hooks/useAppSelector';
+
+import './StatusPage.scss';
 
 export const SuccessCreatedOrderPage = () => {
     const navigate = useNavigate();
-    const { id, status, address, type } = useAppSelector((state) => state.successReducer);
+    const { id, address, type } = useAppSelector((state) => state.successReducer);
 
     return (
         <main className='status-page'>
@@ -90,10 +91,10 @@ export const ErrorCreatedOrderPage = () => {
 
                     <div className='buttons-wrapper'>
                         <ActionButton
-                            text={'Посмотреть статус'}
+                            text={'Вернуться к заявке'}
                             type={'button'}
                             onClick={() => {
-                                navigate('/');
+                                navigate(-1);
                             }}
                         />
                         <ActionButton

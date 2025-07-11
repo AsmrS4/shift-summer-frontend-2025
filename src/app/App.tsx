@@ -6,8 +6,10 @@ import DeliveryReceiverPage from '@pages/Delivery/DeliveryReceiver';
 import DeliveryReceiveToPage from '@pages/Delivery/DeliveryReceiveTo';
 import DeliverySenderPage from '@pages/Delivery/DeliverySender';
 import DeliverySendFromPage from '@pages/Delivery/DeliverySendFrom';
+import { ErrorPage, ServerErrorPage } from '@pages/ErrorPage';
 import HomePage from '@pages/Home';
 import LoginPage from '@pages/Login';
+import ProfilePage from '@pages/Profile';
 import { ErrorCreatedOrderPage, SuccessCreatedOrderPage } from '@pages/StatusPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -18,8 +20,10 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path={'/'} element={<HomePage />} />
+                    <Route path='/profile' element={<ProfilePage />} />
                     <Route path='/delivery-registration'>
                         <Route path='/delivery-registration/method' element={<DeliveryPage />} />
+
                         <Route
                             path='/delivery-registration/receiver'
                             element={<DeliveryReceiverPage />}
@@ -54,6 +58,8 @@ function App() {
                         />
                     </Route>
                     <Route path='/sign-in' element={<LoginPage />} />
+                    <Route path='/server-error' element={<ServerErrorPage />} />
+                    <Route path='*' element={<ErrorPage />} />
                 </Routes>
             </BrowserRouter>
         </>

@@ -28,8 +28,10 @@ main.login-page {
                 max-width: 328px;
             }
             .button-wrapper {
+                @include flex-column();
                 width: 100%;
                 align-items: start;
+                gap: 24px;
                 button {
                     width: 100%;
                 }
@@ -48,4 +50,10 @@ main.login-page {
             }
         }
     }
+}
+
+.error-message {
+    font-weight: 400;
+    margin: 0;
+    color: $error-color;
 }

@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import LinearProgressBar from '@components/ProgressBar/LinearBar';
 import ActionButton from '@components/Button';
+import type { DeliveryType } from '@models/Package';
+import {
+    cancelCreateOrder,
+    setPackageDetails,
+} from '@store/Delivery/CreateOrder/CreateOrderReducer';
+
+import { incrementStep, resetStep } from '@store/ProgressBar/ProgressBarReducer';
+import { useAppSelector } from '@hooks/useAppSelector';
 
 import expressDeliveryIcon from '@assets/express-delivery-img.svg';
 import defaultDeliveryIcon from '@assets/default-delivery-img.svg';
 import giftImage from '@assets/gift-small.svg';
 
 import '../DeliveryPage.scss';
-import { useAppSelector } from '@hooks/useAppSelector';
-import { useDispatch } from 'react-redux';
-import {
-    cancelCreateOrder,
-    setPackageDetails,
-} from '@store/Delivery/CreateOrder/CreateOrderReducer';
-import type { DeliveryType } from '@models/Package';
-import { incrementStep, resetStep } from '@store/ProgressBar/ProgressBarReducer';
 
 const DeliveryPage = () => {
     const [deliveryType, setDeliveryType] = useState<string | null>(null);

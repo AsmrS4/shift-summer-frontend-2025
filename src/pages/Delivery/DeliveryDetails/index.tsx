@@ -2,15 +2,15 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 
+import instance from '@api/index';
 import ActionButton from '@components/Button';
 import LinearProgressBar from '@components/ProgressBar/LinearBar';
-import { decrementStep } from '@store/ProgressBar/ProgressBarReducer';
 import { useAppSelector } from '@hooks/useAppSelector';
 import type { DeliveryType } from '@models/Package';
-import { getFullAddress, getFullName } from '@utils/index';
-import instance from '@api/index';
+import { decrementStep } from '@store/ProgressBar/ProgressBarReducer';
 import { setDetails } from '@store/Delivery/SuccessCreatedOrder/SuccessOrderReducer';
 import { cancelCreateOrder } from '@store/Delivery/CreateOrder/CreateOrderReducer';
+import { getFullAddress, getFullName } from '@utils/index';
 
 const DeliveryCreateDetailsPage = () => {
     const dispatch: any = useDispatch();
