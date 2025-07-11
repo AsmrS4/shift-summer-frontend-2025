@@ -24,7 +24,7 @@ const sessionSlice = createSlice({
             state.isAuth = false;
             state.token = null;
             state.error = null;
-            localStorage.removeItem("ACCESS_TOKEN")
+            return;
         },
     }
 })

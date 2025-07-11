@@ -4,10 +4,18 @@ import logoSrc from '@assets/SHIFT_LOGO.svg';
 
 import './Header.scss';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '@hooks/useAppSelector';
+import { logoutUser } from '@store/Session/SessionCreator';
 
 const Header = () => {
     const navigate = useNavigate();
-    //TODO:вынести проверку авторизации в стор
+    const { isAuth } = useAppSelector((state) => state.sessionReducer);
+    const handleClick = () => {
+        if (isAuth) {
+            localStorage.removeItem('ACCESS_TOKEN');
+            logoutUser();
+        }
+    };
     return (
         <header className='header'>
             <div className='wrapper'>
@@ -21,11 +29,23 @@ const Header = () => {
                 </div>
                 <nav className='navigation'>
                     <div className='left-child'>
-                        <NavLink href={'/profile'} text={'Профиль'} icon={<PermIdentity />} />
-                        <NavLink href={'/history'} text={'История'} icon={<Schedule />} />
+                        {isAuth && (
+                            <>
+                                <NavLink
+                                    href={'/profile'}
+                                    text={'Профиль'}
+                                    icon={<PermIdentity />}
+                                />
+                                <NavLink href={'/history'} text={'История'} icon={<Schedule />} />
+                            </>
+                        )}
                     </div>
-                    <div className='right-child'>
-                        <NavLink href={'/sign-in'} text={'Выйти'} icon={<Logout />} />
+                    <div className='right-child' onClick={handleClick}>
+                        {isAuth ? (
+                            <NavLink href={'/'} text={'Выйти'} icon={<Logout />} />
+                        ) : (
+                            <NavLink href={'/sign-in'} text={'Войти'} icon={<Login />} />
+                        )}
                     </div>
                 </nav>
             </div>

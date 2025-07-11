@@ -26,7 +26,7 @@ const LoginPage = () => {
     const [hidden, setIsHidden] = useState<boolean>(true);
     const [buttonText, setText] = useState<string>('Продолжить');
     const [retryDelay, setDelay] = useState<number>(0);
-    const { error } = useAppSelector((state) => state.sessionReducer);
+    const { error, isAuth } = useAppSelector((state) => state.sessionReducer);
 
     const dispatch: any = useDispatch();
     const navigate = useNavigate();
@@ -51,10 +51,10 @@ const LoginPage = () => {
         setIsHidden(false);
         setText('Отправить');
     };
+
     const onSubmit = (form: Login) => {
         try {
             dispatch(authorizeUser(form));
-            navigate('/');
         } catch (error) {
             console.log(error);
         }
@@ -67,7 +67,11 @@ const LoginPage = () => {
             }, 1000);
         }
     }, [retryDelay]);
-
+    useEffect(() => {
+        if (isAuth) {
+            navigate('/');
+        }
+    }, [isAuth]);
     return (
         <main className='login-page'>
             <div className='inner-wrapper'>

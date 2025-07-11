@@ -27,8 +27,7 @@ export const authorizeUser = (payload: LoginProps) => async (dispatch: Dispatch)
 }
 
 export const logoutUser = () => async(dispatch: Dispatch) => {
-    localStorage.clear();
+    
     dispatch(clearSession());
     dispatch(clearUser());
-    return;
 }
