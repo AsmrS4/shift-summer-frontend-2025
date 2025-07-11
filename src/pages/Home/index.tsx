@@ -19,10 +19,15 @@ import giftImageSmall from '@assets/gift-small.svg';
 
 import './Home.scss';
 import type { DeliveryPoint, Point } from '@models/DeliveryPoint';
-import type { PackageCreate } from '@models/Package';
+import type { PackageCreate, PackageProps } from '@models/Package';
 import instance from '@api/index';
 import { setTypes } from '@store/Delivery/ProccessDelivery/ProcessDeliveryReducer';
 import { useNavigate } from 'react-router-dom';
+import {
+    setPackageId,
+    setReceiverPointId,
+    setSenderPointId,
+} from '@store/Delivery/CreateOrder/CreateOrderReducer';
 
 const HomePage = () => {
     const { cities } = useAppSelector((state) => state.addressReducer);
@@ -37,12 +42,14 @@ const HomePage = () => {
         dispatch(fetchAddress());
         dispatch(fetchPackageParams());
     }, []);
+
     const handleOrderSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setOrderNumber(e.target.valueAsNumber);
     };
     const findItemByName = (array: any[], name: string) => {
         return array.find((item) => item.name == name);
     };
+
     const mapPoint = (point: DeliveryPoint): Point => {
         return {
             longitude: point.longitude,
@@ -50,21 +57,16 @@ const HomePage = () => {
         };
     };
     const handleSubmit = () => {
-        const { height, weight, length, width } = findItemByName(
-            packages,
-            packageRef.current.value,
-        );
-
-        const senderPoint: Point = mapPoint(findItemByName(cities, senderRef.current.value));
-        const receiverPoint: Point = mapPoint(findItemByName(cities, receiverRef.current.value));
-        const packageData: PackageCreate = { height, weight, length, width };
+        const senderPoint: DeliveryPoint = findItemByName(cities, senderRef.current.value);
+        const receiverPoint: DeliveryPoint = findItemByName(cities, receiverRef.current.value);
+        const packageData: PackageProps = findItemByName(packages, packageRef.current.value);
 
         processDelivery(packageData, senderPoint, receiverPoint);
     };
     const processDelivery = async (
-        packageProps: PackageCreate,
-        senderPoint: Point,
-        receiverPoint: Point,
+        packageProps: PackageProps,
+        senderPoint: DeliveryPoint,
+        receiverPoint: DeliveryPoint,
     ) => {
         try {
             const response = await instance.post('/calc', {
@@ -72,8 +74,12 @@ const HomePage = () => {
                 senderPoint: { ...senderPoint },
                 receiverPoint: { ...receiverPoint },
             });
-            console.log(response.data);
+
+            dispatch(setPackageId(packageProps.id));
+            dispatch(setSenderPointId(senderPoint.id));
+            dispatch(setReceiverPointId(receiverPoint.id));
             dispatch(setTypes(response.data.options));
+
             navigate('/delivery-registration/method');
         } catch (error) {
             console.log('error: ' + error);

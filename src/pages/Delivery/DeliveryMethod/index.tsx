@@ -30,7 +30,6 @@ const DeliveryPage = () => {
         setDeliveryType(id);
         dispatch(
             setPackageDetails({
-                id: id,
                 type: type!.type,
             }),
         );

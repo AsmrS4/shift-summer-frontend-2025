@@ -3,13 +3,20 @@ import NavLink from '@components/Link';
 import logoSrc from '@assets/SHIFT_LOGO.svg';
 
 import './Header.scss';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+    const navigate = useNavigate();
     //TODO:вынести проверку авторизации в стор
     return (
         <header className='header'>
             <div className='wrapper'>
-                <div className='logo'>
+                <div
+                    className='logo'
+                    onClick={() => {
+                        navigate('/');
+                    }}
+                >
                     <img src={logoSrc} alt='Logo' />
                 </div>
                 <nav className='navigation'>

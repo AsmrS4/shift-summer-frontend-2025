@@ -13,7 +13,7 @@ const progressSlice = createSlice({
             }
         },
         decrementStep: (state) => {
-            if(state.step > 0) {
+            if(state.step > 1) {
                 state.step -= 1
             }
         },

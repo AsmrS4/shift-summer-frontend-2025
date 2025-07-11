@@ -8,6 +8,7 @@ import DeliverySenderPage from '@pages/Delivery/DeliverySender';
 import DeliverySendFromPage from '@pages/Delivery/DeliverySendFrom';
 import HomePage from '@pages/Home';
 import LoginPage from '@pages/Login';
+import { ErrorCreatedOrderPage, SuccessCreatedOrderPage } from '@pages/StatusPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -43,8 +44,14 @@ function App() {
                             path='/delivery-registration/details'
                             element={<DeliveryCreateDetailsPage />}
                         />
-                        <Route path='/delivery-registration/success' element={<DeliveryPage />} />
-                        <Route path='/delivery-registration/error' element={<DeliveryPage />} />
+                        <Route
+                            path='/delivery-registration/success'
+                            element={<SuccessCreatedOrderPage />}
+                        />
+                        <Route
+                            path='/delivery-registration/error'
+                            element={<ErrorCreatedOrderPage />}
+                        />
                     </Route>
                     <Route path='/sign-in' element={<LoginPage />} />
                 </Routes>

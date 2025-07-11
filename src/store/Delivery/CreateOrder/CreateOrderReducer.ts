@@ -16,7 +16,6 @@ interface SenderAddressProps {
 }
 
 interface PackageType {
-    id: string,
     type: "DEFAULT" | "EXPRESS" 
 }
 
@@ -81,9 +80,11 @@ const createOrderSlice = createSlice({
     initialState,
     reducers: {
         setPackageDetails: (state, action:PayloadAction<PackageType>) => {
-            state.data.packageId = action.payload.id;
             state.data.optionType = action.payload.type
             console.log(current(state.data))
+        },
+        setPackageId: (state, action: PayloadAction<number>)=> {
+            state.data.packageId = action.payload
         },
         setSender : (state, action: PayloadAction<SenderAddressProps>) => {
             state.data.senderAddress = action.payload
@@ -95,7 +96,7 @@ const createOrderSlice = createSlice({
             state.data.senderPointId = action.payload
         },
         setReceiverPointId : (state, action) => {
-            state.data.senderPointId = action.payload
+            state.data.receiverPointId = action.payload
         },
         setSenderDetails: (state, action: PayloadAction<PersonDetails>) => {
             state.data.sender = action.payload
@@ -115,6 +116,7 @@ const createOrderSlice = createSlice({
 
 export default createOrderSlice.reducer;
 export const {
+    setPackageId,
     setPackageDetails, setReceiver, 
     setPayer, setReceiverDetails, 
     setReceiverPointId, setSender, 
