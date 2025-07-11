@@ -19,7 +19,7 @@ import giftImageSmall from '@assets/gift-small.svg';
 
 import './Home.scss';
 import type { DeliveryPoint, Point } from '@models/DeliveryPoint';
-import type { PackageCreate, PackageProps } from '@models/Package';
+import type { PackageProps } from '@models/Package';
 import instance from '@api/index';
 import { setTypes } from '@store/Delivery/ProccessDelivery/ProcessDeliveryReducer';
 import { useNavigate } from 'react-router-dom';
@@ -48,13 +48,6 @@ const HomePage = () => {
     };
     const findItemByName = (array: any[], name: string) => {
         return array.find((item) => item.name == name);
-    };
-
-    const mapPoint = (point: DeliveryPoint): Point => {
-        return {
-            longitude: point.longitude,
-            latitude: point.latitude,
-        };
     };
     const handleSubmit = () => {
         const senderPoint: DeliveryPoint = findItemByName(cities, senderRef.current.value);

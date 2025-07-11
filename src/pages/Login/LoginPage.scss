@@ -28,8 +28,10 @@ main.login-page {
                 max-width: 328px;
             }
             .button-wrapper {
+                @include flex-column();
                 width: 100%;
                 align-items: start;
+                gap: 24px;
                 button {
                     width: 100%;
                 }
